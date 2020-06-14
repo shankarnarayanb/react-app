@@ -1,0 +1,14 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json . 
+
+#If you want to make the image size lesser in dev and also faster, it is better to map the node_modules folder
+#from local onto the container 
+RUN npm install
+
+COPY . .
+#This is not needed in dev machine as we may need to change it and use the violumes for devlopment environment
+
+CMD ["npm", "run", "start" ]
